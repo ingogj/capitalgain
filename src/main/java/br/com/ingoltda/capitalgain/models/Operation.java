@@ -11,4 +11,8 @@ public class Operation {
     private double unitCost;
     private double quantity;
     private double tax;
+
+    public double getOperationCost(){
+        return this.unitCost * this.quantity;
+    }
 }

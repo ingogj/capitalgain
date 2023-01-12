@@ -4,13 +4,12 @@ public enum OperationType {
         BUY("buy"),
         SELL("sell");
 
-        private String type;
+        private final String value;
 
-        public String getType() {
-                return this.type;
+        OperationType(String value) {
+                this.value = value;
         }
-
-        private OperationType(String type) {
-                this.type = type;
+        public String getValue() {
+                return value;
         }
 }
