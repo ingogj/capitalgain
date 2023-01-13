@@ -2,14 +2,19 @@ package br.com.ingoltda.capitalgain.controllers;
 
 import br.com.ingoltda.capitalgain.models.Operation;
 import br.com.ingoltda.capitalgain.services.OperationLineProcessorService;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ExitCodeGenerator;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import picocli.CommandLine;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//@Component
+//public class CliController implements CommandLineRunner, ExitCodeGenerator {
 @Controller
 public class CliController {
-
 
     public static void main(String[] args) {
 
