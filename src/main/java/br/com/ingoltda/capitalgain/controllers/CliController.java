@@ -13,21 +13,23 @@ import java.util.concurrent.Callable;
 
 import java.util.List;
 
-@Component
-@CommandLine.Command(name = "MyRefactorCLI ", mixinStandardHelpOptions = true, version = "0.1", description = "CapitalGain project")
-public class CliController implements Callable<Integer> {
 
-    @Override
-    public Integer call() throws Exception {
+//@CommandLine.Command(name = "CapitalGain ", mixinStandardHelpOptions = true, version = "0.1", description = "CapitalGain project")
+public class CliController {//implements Callable<Integer> {
+
+//    @CommandLine.Option(names = { "-a",
+//            "--address" }, paramLabel = "API_ADDRESS", description = "The address you want to connect to")
+//    String option;
+
+    //@Override
+    public void call(){
         List<List<Operation>> jsons = readContentFromStdIn();
+        StringBuilder resultTax = new StringBuilder();
         jsons.forEach(operationsLine -> {
             OperationLineProcessorService operationLineProcessorService = new OperationLineProcessorService();
-            operationLineProcessorService.process(operationsLine);
-            operationsLine.forEach(operation -> {
-                System.out.println(operation.getTaxToString());
-            });
+            resultTax.append(operationLineProcessorService.process(operationsLine));
         });
-        return 0;
+        System.out.println(resultTax);
     }
     private List<List<Operation>> readContentFromStdIn()
     {
@@ -47,7 +49,5 @@ public class CliController implements Callable<Integer> {
     private List<Operation> parseLine(String line){
         Gson gson = new Gson();
         return gson.fromJson(line, new TypeToken<ArrayList<Operation>>(){}.getType());
-//        List<Operation> operations = gson.fromJson(line, new TypeToken<ArrayList<Operation>>(){}.getType());
-//        return operations;
     }
 }
