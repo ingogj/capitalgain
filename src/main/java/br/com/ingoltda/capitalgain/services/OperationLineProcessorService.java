@@ -10,11 +10,11 @@ import java.util.List;
 @Service
 public class OperationLineProcessorService {
 
-    public void process(List<Operation> operationList){
+    public void process(List<Operation> operationsLine){
         StockContainer stockContainer = new StockContainer();
         OperationProcessorFactory operationProcessorFactory = new OperationProcessorFactory();
 
-        operationList.forEach(operation -> {
+        operationsLine.forEach(operation -> {
 
             operationProcessorFactory.newOperationProcessor(operation.getOperationType()).walletCalculator(stockContainer, operation);
 

@@ -9,7 +9,8 @@ class CapitalgainApplicationTests {
 
 	@Test
 	void contextLoads() {
-		Assert.assertEquals(1,2-1);
+
+		Assert.assertEquals(1,(2-1));
 	}
 
 }

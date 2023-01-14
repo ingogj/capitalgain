@@ -21,7 +21,7 @@ public class SellOperationProcessorImpl implements OperationProcessorService{
         double operationBalance = (operation.getUnitCost() - stockContainer.getAverangeUnitCost()) * operation.getQuantity();
         stockContainer.setBalance(stockContainer.getBalance() + operationBalance);
 
-        if(operation.getOperationCost() > 20000D && stockContainer.getBalance() > 0D){
+        if(operation.getOperationCost() > 20000D && stockContainer.getBalance() > 0D && operationBalance > 0D){
             operation.setTax(MathUtils.round(stockContainer.getBalance() * 20D / 100D, 2));
         } else {
             operation.setTax(0D);

@@ -2,118 +2,52 @@ package br.com.ingoltda.capitalgain.controllers;
 
 import br.com.ingoltda.capitalgain.models.Operation;
 import br.com.ingoltda.capitalgain.services.OperationLineProcessorService;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.ExitCodeGenerator;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import picocli.CommandLine;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.concurrent.Callable;
+
 import java.util.List;
 
-//@Component
-//public class CliController implements CommandLineRunner, ExitCodeGenerator {
-@Controller
-public class CliController {
+@Component
+@CommandLine.Command(name = "MyRefactorCLI ", mixinStandardHelpOptions = true, version = "0.1", description = "CapitalGain project")
+public class CliController implements Callable<Integer> {
 
-    public static void main(String[] args) {
+    @Override
+    public Integer call() throws Exception {
+        List<List<Operation>> jsons = readContentFromStdIn();
+        jsons.forEach(operationsLine -> {
+            OperationLineProcessorService operationLineProcessorService = new OperationLineProcessorService();
+            operationLineProcessorService.process(operationsLine);
+            operationsLine.forEach(operation -> {
+                System.out.println(operation.getTaxToString());
+            });
+        });
+        return 0;
+    }
+    private List<List<Operation>> readContentFromStdIn()
+    {
+        Scanner in = new Scanner(System.in);
+        String input;
+        List<List<Operation>> jsons = new ArrayList<>();
+        do{
+            input = in.nextLine();
+            if(!input.isEmpty()){
+                jsons.add(parseLine(input));
+            } else break;
+        } while(!input.isEmpty());
 
-        OperationLineProcessorService operationLineProcessorService = new OperationLineProcessorService();
+        return jsons;
+    }
 
-        List<Operation> line = new ArrayList<>();
-
-        System.out.println("CASO #1");//todo
-        line.add(Operation.builder().operationType("buy").unitCost(10.00D).quantity(100D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(15.00D).quantity(50D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(15.00D).quantity(50D).build());
-
-        operationLineProcessorService.process(line);
-
-        System.out.println("CASO #2");//todo
-        line = new ArrayList<>();
-
-        line.add(Operation.builder().operationType("buy").unitCost(10.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(20.00D).quantity(5000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(5.00D).quantity(5000D).build());
-
-        operationLineProcessorService.process(line);
-
-        System.out.println("CASO #3");//todo
-        line = new ArrayList<>();
-
-        line.add(Operation.builder().operationType("buy").unitCost(10.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(5.00D).quantity(5000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(20.00D).quantity(3000D).build());
-
-        operationLineProcessorService.process(line);
-
-        System.out.println("CASO #4");//todo
-        line = new ArrayList<>();
-
-        line.add(Operation.builder().operationType("buy").unitCost(10.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("buy").unitCost(25.00D).quantity(5000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(15.00D).quantity(1000D).build());
-
-        operationLineProcessorService.process(line);
-
-        System.out.println("CASO #5");//todo
-        line = new ArrayList<>();
-
-        line.add(Operation.builder().operationType("buy").unitCost(10.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("buy").unitCost(25.00D).quantity(5000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(15.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(25.00D).quantity(5000D).build());
-
-        operationLineProcessorService.process(line);
-
-        System.out.println("CASO #6");//todo
-        line = new ArrayList<>();
-
-        line.add(Operation.builder().operationType("buy").unitCost(10.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(2.00D).quantity(5000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(20.00D).quantity(2000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(20.00D).quantity(2000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(25.00D).quantity(1000D).build());
-
-        operationLineProcessorService.process(line);
-
-        System.out.println("CASO #7");//todo
-        line = new ArrayList<>();
-
-        line.add(Operation.builder().operationType("buy").unitCost(10.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(2.00D).quantity(5000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(20.00D).quantity(2000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(20.00D).quantity(2000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(25.00D).quantity(1000D).build());
-
-        line.add(Operation.builder().operationType("buy").unitCost(20.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(15.00D).quantity(5000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(30.00D).quantity(4350D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(30.00D).quantity(650D).build());
-
-        operationLineProcessorService.process(line);
-
-        System.out.println("CASO #8");//todo
-        line = new ArrayList<>();
-
-        line.add(Operation.builder().operationType("buy").unitCost(10.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(50.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("buy").unitCost(20.00D).quantity(10000D).build());
-        line.add(Operation.builder().operationType("sell").unitCost(50.00D).quantity(10000D).build());
-
-        operationLineProcessorService.process(line);
-
-        System.out.println("\nArredondando Decimais\n");//todo
-        line = new ArrayList<>();
-
-        line.add(Operation.builder().operationType("buy").unitCost(20.00D).quantity(10D).build());
-        line.add(Operation.builder().operationType("buy").unitCost(10.00D).quantity(5D).build());
-
-        double result = ((20D * 10D) + (10D * 5D)) / (10D + 5D);
-        double scale = Math.pow(10, 2);
-        System.out.println("Math.pow(10, 2) " + Math.pow(10, 2)); //todo
-        System.out.println("Math.round(result * scale) / scale " + Math.round(result * scale) / scale);//todo
-        System.out.println("result: " + Math.round(result));//todo
-        operationLineProcessorService.process(line);
+    private List<Operation> parseLine(String line){
+        Gson gson = new Gson();
+        return gson.fromJson(line, new TypeToken<ArrayList<Operation>>(){}.getType());
+//        List<Operation> operations = gson.fromJson(line, new TypeToken<ArrayList<Operation>>(){}.getType());
+//        return operations;
     }
 }
