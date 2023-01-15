@@ -4,7 +4,6 @@ import br.com.ingoltda.capitalgain.models.Operation;
 import br.com.ingoltda.capitalgain.models.StockContainer;
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.test.util.ReflectionTestUtils;
 
 public class SellOperationProcessorImplTest {
 

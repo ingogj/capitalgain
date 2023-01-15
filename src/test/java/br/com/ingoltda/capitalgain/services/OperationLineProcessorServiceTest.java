@@ -12,13 +12,15 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 
 public class OperationLineProcessorServiceTest {
 
     @Mock
     BuyOperationProcessorImpl buyOperationProcessor;
+
+    @Mock
+    OperationProcessorFactory operationProcessorFactory;
 
     @InjectMocks
     OperationLineProcessorService operationLineProcessorService;
@@ -29,8 +31,6 @@ public class OperationLineProcessorServiceTest {
     }
     @Test
     public void processTest(){
-
-        OperationProcessorFactory operationProcessorFactory = new OperationProcessorFactory();
         Mockito.when(operationProcessorFactory.newOperationProcessor(anyString()))
                 .thenReturn(buyOperationProcessor);
 
