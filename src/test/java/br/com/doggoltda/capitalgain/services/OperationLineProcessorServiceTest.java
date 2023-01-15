@@ -1,6 +1,6 @@
-package br.com.ingoltda.capitalgain.services;
+package br.com.doggoltda.capitalgain.services;
 
-import br.com.ingoltda.capitalgain.models.Operation;
+import br.com.doggoltda.capitalgain.models.Operation;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

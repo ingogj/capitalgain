@@ -1,4 +1,4 @@
-package br.com.ingoltda.capitalgain.models;
+package br.com.doggoltda.capitalgain.models;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;

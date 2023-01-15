@@ -1,4 +1,4 @@
-package br.com.ingoltda.capitalgain.enums;
+package br.com.doggoltda.capitalgain.enums;
 
 public enum OperationType {
         BUY("buy"),

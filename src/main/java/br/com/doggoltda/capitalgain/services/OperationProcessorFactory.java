@@ -1,8 +1,8 @@
-package br.com.ingoltda.capitalgain.services;
+package br.com.doggoltda.capitalgain.services;
 
 import org.springframework.stereotype.Service;
 
-import static br.com.ingoltda.capitalgain.enums.OperationType.BUY;
+import static br.com.doggoltda.capitalgain.enums.OperationType.BUY;
 
 @Service
 public class OperationProcessorFactory {

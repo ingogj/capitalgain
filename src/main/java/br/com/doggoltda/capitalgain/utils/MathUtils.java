@@ -1,4 +1,4 @@
-package br.com.ingoltda.capitalgain.utils;
+package br.com.doggoltda.capitalgain.utils;
 
 public class MathUtils {
 

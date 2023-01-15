@@ -8,7 +8,7 @@
 		<version>2.7.8-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.ingoltda</groupId>
+	<groupId>br.com.doggoltda</groupId>
 	<artifactId>capitalgain</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>capitalgain</name>

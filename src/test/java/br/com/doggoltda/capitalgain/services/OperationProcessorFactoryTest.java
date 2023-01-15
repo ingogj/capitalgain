@@ -1,4 +1,4 @@
-package br.com.ingoltda.capitalgain.services;
+package br.com.doggoltda.capitalgain.services;
 
 import org.junit.Assert;
 import org.junit.Test;

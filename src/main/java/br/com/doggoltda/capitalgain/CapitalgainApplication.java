@@ -1,6 +1,6 @@
-package br.com.ingoltda.capitalgain;
+package br.com.doggoltda.capitalgain;
 
-import br.com.ingoltda.capitalgain.controllers.CliController;
+import br.com.doggoltda.capitalgain.controllers.CliController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

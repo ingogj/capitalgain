@@ -1,7 +1,7 @@
-package br.com.ingoltda.capitalgain.controllers;
+package br.com.doggoltda.capitalgain.controllers;
 
-import br.com.ingoltda.capitalgain.models.Operation;
-import br.com.ingoltda.capitalgain.services.OperationLineProcessorService;
+import br.com.doggoltda.capitalgain.models.Operation;
+import br.com.doggoltda.capitalgain.services.OperationLineProcessorService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

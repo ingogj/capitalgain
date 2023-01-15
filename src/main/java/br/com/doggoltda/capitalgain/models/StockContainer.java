@@ -1,4 +1,4 @@
-package br.com.ingoltda.capitalgain.models;
+package br.com.doggoltda.capitalgain.models;
 
 import lombok.Builder;
 import lombok.Data;
