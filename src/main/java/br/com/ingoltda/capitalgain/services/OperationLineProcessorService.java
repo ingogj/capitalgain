@@ -15,6 +15,12 @@ public class OperationLineProcessorService {
         this.operationProcessorFactory = new OperationProcessorFactory();
     }
 
+    /**
+     * This method will process the list of operations and return the value of taxes formatted as Json
+     *
+     * @param operationsLine    A line received by this aplication and already parsed
+     * @return                  A json informing the Tax of each operation inserted
+     */
     public String process(List<Operation> operationsLine){
         StockContainer stockContainer = StockContainer.builder().build();
         StringBuilder resultTaxes = new StringBuilder().append("[");

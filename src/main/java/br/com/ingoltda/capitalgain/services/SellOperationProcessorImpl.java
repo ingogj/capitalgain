@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class SellOperationProcessorImpl implements OperationProcessorService{
 
+    /**
+     * This method calculates an operation, where the objective is to calculate the quantity and average unit cost of the stocks purchased
+     *
+     * @param stockContainer
+     * @param operation
+     */
     public void calculateWallet(StockContainer stockContainer, Operation operation) {
         calculateTax(stockContainer, operation);
 
@@ -18,6 +24,16 @@ public class SellOperationProcessorImpl implements OperationProcessorService{
         }
     }
 
+    /**
+     * This method calculates the TAX of an operation
+     * To receive a tax, an operation must be:
+     *  - a sell operation with total value above 20000,00
+     *  - covering past losses
+     *  - a profitable operation ( selling for a higher unit price than purchased one )
+     *
+     * @param stockContainer    Object that contains information about purchased stocks and balance
+     * @param operation         Object containing operation values
+     */
     public void calculateTax(StockContainer stockContainer, Operation operation) {
         double operationBalance = (operation.getUnitCost() - stockContainer.getAverangeUnitCost()) * operation.getQuantity();
         stockContainer.setBalance(stockContainer.getBalance() + operationBalance);

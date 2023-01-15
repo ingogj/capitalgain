@@ -19,6 +19,14 @@ public class CliController {
         this.operationLineProcessorService = new OperationLineProcessorService();
     }
 
+    /**
+     * Until pressing ENTER, the method will receive lines in json format, as shown below,
+     * calls the appropriate services to parse, process and calculate the response rate.
+     *
+     * Example: [{"operation":"buy", "unit-cost":10.00, "quantity": 10000},{"operation":"sell", "unit-cost":20.00, "quantity": 5000},{"operation":"sell", "unit-cost":5.00, "quantity": 5000}]
+     *
+     * @return            String in json format with the TAX of processed operations
+     */
     public String readContentFromStdIn(){
         Scanner in = new Scanner(System.in);
         StringBuilder resultTax = new StringBuilder();
@@ -36,6 +44,14 @@ public class CliController {
         return resultTax.toString();
     }
 
+    /**
+     * This method will parse json for an OPERATION LIST
+     *
+     * Json example: [{"operation":"buy", "unit-cost":10.00, "quantity": 10000},{"operation":"sell", "unit-cost":20.00, "quantity": 5000},{"operation":"sell", "unit-cost":5.00, "quantity": 5000}]
+     *
+     * @param line          A json containing a list of Operation
+     * @return              an operation list
+     */
     private List<Operation> parseLine(String line){
         Gson gson = new Gson();
         return gson.fromJson(line, new TypeToken<ArrayList<Operation>>(){}.getType());
