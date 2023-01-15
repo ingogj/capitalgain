@@ -10,7 +10,6 @@ public class CapitalgainApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CapitalgainApplication.class, args);
 		CliController cliController = new CliController();
-		cliController.call();
+		System.out.println(cliController.readContentFromStdIn());
 	}
-
 }

@@ -9,8 +9,4 @@ public class Wallet {
 
     private double averangeUnitCost;
     private double quantity;
-
-    public boolean isEmpty(){
-        return this.getQuantity() == 0D;
-    }
 }

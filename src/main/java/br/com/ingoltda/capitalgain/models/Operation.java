@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class Operation {
 
     @SerializedName("operation")
@@ -22,7 +23,7 @@ public class Operation {
         return this.unitCost * this.quantity;
     }
 
-    public String getTaxToString() {
+    public String getFormattedTax() {
         return new StringBuilder().append("{\"tax\": ")
                 .append(String.format("%.2f",tax).replace(",","."))
                 .append("}").toString();
